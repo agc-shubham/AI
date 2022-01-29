@@ -4,6 +4,7 @@ from utils import *
 # (note: changing the value here will _not_ change the test code)
 grid = '..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..'
 grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+grid3 = '...26.7.168..7..9.19...45..82.1...4...46.29...5...3.28..93...74.4..5..367.3.18...'
 def grid_values(grid):
     """Convert grid string into {<box>: <value>} dict with '.' value for empties.
 
@@ -22,6 +23,19 @@ def grid_values(grid):
         elif c in all_digits:
             values.append(c)
     return dict(zip(boxes,values))
+
+def grid_(grid):
+    """Convert grid string into {<box>: <value>} dict with '.' value for empties.
+
+    Args:
+        grid: Sudoku grid in string form, 81 characters long
+    Returns:
+        Sudoku grid in dictionary form:
+        - keys: Box labels, e.g. 'A1'
+        - values: Value in corresponding box, e.g. '8', or '.' if it is empty.
+    """
+    
+    return dict(zip(boxes,grid))
 
 def eliminate(values):
     """Eliminate values from peers of each box with a single value.
@@ -99,6 +113,6 @@ def search(values):
         attempt = search(new_sudoku)
         if attempt:
             return attempt
-display(search((grid_values(grid))))
-print("\n")
-display(search((grid_values(grid2))))
+display(grid_(grid3))
+print()
+display(search((grid_values(grid3))))
